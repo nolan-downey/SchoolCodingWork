@@ -1,0 +1,86 @@
+//Nolan Downey
+//Program: Bouncing Ball
+//bounce.cpp
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <unistd.h>
+
+#include "gfx.h"
+
+using namespace std;
+
+int main()
+{
+	char input = 0;
+
+	int window_w = 900;
+	int window_h = 500;
+	int x_cd = 50, y_cd = 50, rad = 30;
+	int dir_x = 1;
+	int dir_y = 1;
+	int pausetime = 5000;
+	int direction = 0;
+
+
+	gfx_open(window_w, window_h, "Nolan's Bouncing Ball");
+	gfx_color(54,120,150);
+
+	while(input != 'q') {
+		
+		gfx_circle(x_cd,y_cd,rad);
+
+		x_cd += dir_x;
+		y_cd += dir_y;
+
+		if (x_cd >= window_w - rad)
+			dir_x = -dir_x;
+		if (x_cd <= rad)
+			dir_x = -dir_x;
+		if (y_cd >= window_h - rad)
+			dir_y = -dir_y;
+		if (y_cd <= rad)
+			dir_y = -dir_y;
+
+		if (gfx_event_waiting()) {
+			input = gfx_wait();
+		
+			if (input == 1) {
+				int xpos = gfx_xpos();
+				int ypos = gfx_ypos();
+
+				if (xpos < rad or window_w - xpos < rad)
+					continue;
+				else if (ypos < rad or window_h - ypos < rad)
+					continue;
+				else {
+					
+					gfx_flush();
+
+					x_cd = xpos;
+					y_cd = ypos;
+
+					srand(time(0));
+
+					dir_x = rand()%5 + 1;
+					dir_y = rand()%5 + 1;
+
+					direction = rand() % 10 +1;
+
+					if ((direction % 2) == 0) {
+						dir_x *= -1;
+						dir_y *= -1;
+					}
+				}
+			}
+		}
+
+		usleep(pausetime);
+
+		gfx_clear();
+	}
+
+return 0;
+
+}
