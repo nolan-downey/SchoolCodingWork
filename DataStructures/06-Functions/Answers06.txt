@@ -1,0 +1,52 @@
+1) a) Objectives: The program needs a way to store certain values of the
+      array in order to later switch them with other elements. Since no
+      temp variable can be used, I believe a pointer is needed to point
+      to the values of the array. The final array should have every other
+      integer switched with the previous integer.
+
+      Class Correct Answer: Using new, create an integer pointer and
+      allocate an in integer array with an even length
+      Print all the elements of the Array
+      Iterate through the array. Pass i and i+1 to a function and swap them
+      Print all the elements of the array to check for successful swaps
+
+  b)  Risks and Alternatives: The array needs to be passed or called by
+      reference, but arrays in C++ are inherently passed by reference
+      because the name of the array is the base address of the beginning of
+      the array. Calling by reference would make this process more abstracted
+      and simpler for the coder, but similar for the computing device.
+      Passing by reference could also work for this situation, as is commonly
+      done with arrays in C++. The method for passing by reference with an array
+      does not require a * or &, since the address is already being passed
+      when the name of the array is being passed.
+
+      Class Correct Answer:
+      Risk: Allocating arrays using pointers can be complex
+        Void pointers would require excessive time for coding
+      Alternatives: C++ provides abstractions
+        malloc or new
+      Risk: Need to free the memory after use
+        free or delete
+      Risk: Need to pass more than one value to the function
+      Alternatives: Pass by reference or call by reference
+        Pass by reference is more complicated to code than Call by reference
+      Risk: We cannot use a temporary variable in our swap Function
+      Alternative: Develop a mathematical formula
+
+  c)  For coding simplicity, we will use the ned/delete to allocate and free the array
+      For printing the array, we will pass by reference since we are passing an integer pointer
+      For coding simplicity, we will call by reference to swap the variables in the array
+      Mathematical approach
+        Remember, the registers contain the current value
+
+      Simple Version of mathematical Function
+        af = ai;
+        bf = bi;
+        bf = bi + ai;
+        af = bf - ai;
+        bf = bf - af;
+
+      Product development and testing
+      testing
+        Input array: 0 2 4 6 8 10
+        Output array: 2 0 6 4 10 8

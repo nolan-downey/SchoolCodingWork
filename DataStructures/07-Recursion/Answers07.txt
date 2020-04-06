@@ -1,0 +1,52 @@
+Problem 1 - Calculate sine
+
+double sine(double x, int n) {
+  if (n == 0)
+    return 0;
+  return pow(x,n)/factorial(n) + sine(x*-1,n-2);
+}
+
+Correct Class Solution
+double sine(double x, unsigned int n) {
+	if (n == 0)
+		return x;
+	return pow(-1,n)*pow(x, 2*n+1)/factorial(2*n+1) + sine(x,n-1);
+}
+
+I believe my logic when addressing the problem was correct, as I was
+decreasing n by 2 each time, but now I see why my code might not work.
+
+1 - Identify Objectives
+- Allocate memory for a character array
+- Iterate through the array to identify the size and value of each component
+- Place the smaller value in front of the larger value
+Added from Class solution
+- Without another data structure, sort the elements
+- Write a Function that takes in the array, as well as other variables,
+such as locations, and perform the swaps
+- The character array should remain intact
+
+
+2 - Identify Risks and Alternatives
+- Risk: Use another data structure like a hashtable
+- Alternative: Use recursion to pass the array by reference
+- Risk: Will characters be in Unicode or ASCII?
+- Alternative: We assume use of Notre Dame machines, so ASCII
+Added from Class Solution
+- Risk: Need to carefully allocate the character array to prevent segmentation faults
+- Alternative: Read in the array from the command line
+- Risk: If reading from the command line, we need the length of the array
+- Alternative: Write a function that iterates through the characters until it hits the NULL character
+
+
+3 - Product Development and Testing
+- Possibly use a temporary array to compare all values
+- Similar to the preview assignment for this class!
+- Constantly compare individual values using recursion
+Added from Class Solution
+- Read in the string from the Command line
+- Write a method that counts the number of characters in argv[1]
+- Recursively divide the string until we reach the single characters
+  - Since we pass the array by reference, we need integers for the start and end values
+  - To divide, (use (start+finish)2, and then first half is start to middle, and the second hald is middle to end)
+- Recombine and sort the characters at each level
